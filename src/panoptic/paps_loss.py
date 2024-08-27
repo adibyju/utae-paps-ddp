@@ -67,9 +67,14 @@ class PaPsLoss(nn.Module):
         
         print(predictions["center_mask"].shape)
 
+        # center_mapping = {
+        #     (int(b), int(i), int(j)): k
+        #     for k, (b, i, j) in enumerate(zip(*torch.where(predictions["center_mask"])))
+        # }
+
         center_mapping = {
-            (int(b), int(i), int(j)): k
-            for k, (b, i, j) in enumerate(zip(*torch.where(predictions["center_mask"])))
+            (int(i), int(j)): k
+            for k, (i, j) in enumerate(zip(*torch.where(predictions["center_mask"])))
         }
 
         loss_center = 0
