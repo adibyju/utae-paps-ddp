@@ -65,7 +65,7 @@ class PaPsLoss(nn.Module):
             sem_pix,
         ) = target.split((1, 1, 1, 2, 1, 1), dim=-1)
         
-        print(predictions["center_mask"].shape)
+        # print(predictions["center_mask"].shape)
 
         # center_mapping = {
         #     (int(b), int(i), int(j)): k
