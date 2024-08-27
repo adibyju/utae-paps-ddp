@@ -168,7 +168,9 @@ class PaPs(nn.Module):
 
         # Retrieve info of detected centers
         H, W = heatmap.shape[-2:]
-        center_batch, center_h, center_w = torch.where(center_mask)
+        center_h, center_w = torch.where(center_mask)
+        center_batch = torch.zeros_like(center_h)  # Assuming a single batch, set the batch indices to 0
+
         center_positions = torch.stack([center_h, center_w], dim=1)
 
         # Construct multi-level feature stack for centers
